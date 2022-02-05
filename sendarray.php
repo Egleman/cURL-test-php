@@ -1,9 +1,6 @@
 <?php
 
-//echo $_REQUEST['a'] + $_REQUEST['b'];
-
-//function getArray()
-//{
+//Создаю двумерный массив из текстового файла
 $text = fopen("bd.txt", "r");
 $array = null;
 $newArray = [];
@@ -21,10 +18,8 @@ foreach ($array as $index => $value) {
     array_push($newArray, $arr);
 }
 
-//var_dump($newArray);
+//перевожу в json формат
 $jsonnewArray =  json_encode($newArray);
 $jsonnewArray = preg_replace('!\\r?\\n!', "", $jsonnewArray);
-echo $jsonnewArray;
-//}
 
-//var_dump($_REQUEST);
+echo $jsonnewArray;

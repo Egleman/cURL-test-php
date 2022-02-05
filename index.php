@@ -1,4 +1,5 @@
 <?php
+//Получение json строки из файла sendarray.php
 $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, 'http://test-work/sendarray.php');
@@ -31,7 +32,7 @@ $decode = json_decode($res);
     </div>
 
     <div class="parent">
-        <form>
+        <form action="">
             <select id="selectFirst">
                 <option value="sel" selected>Выберите значение</option>
             </select>
@@ -40,11 +41,10 @@ $decode = json_decode($res);
                 <option value="sel" selected>Выберите значение</option>
             </select>
             <input type="hidden" name="Select2" value="" class="inp2">
-            <button type="submit">Отправить</button>
+            <input type="submit" class="btn"></input>
         </form>
-
     </div>
-
+    <div class="result"></div>
 </body>
 
 </html>

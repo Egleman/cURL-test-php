@@ -10,3 +10,8 @@ body {
     border: 1px solid black;
     margin-top: 50px;
 }
+
+.result {
+    position: absolute;
+    left: 30%;
+}
