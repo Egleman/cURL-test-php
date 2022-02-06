@@ -1,7 +1,7 @@
 <?php
 
 //Создаю двумерный массив из текстового файла
-$text = fopen("bd.txt", "r");
+$text = fopen("masive.txt", "r");
 $array = null;
 $newArray = [];
 
@@ -19,7 +19,6 @@ foreach ($array as $index => $value) {
 }
 
 //перевожу в json формат
-$jsonnewArray =  json_encode($newArray);
-$jsonnewArray = preg_replace('!\\r?\\n!', "", $jsonnewArray);
+$jsonNewArray =  json_encode($newArray);
 
-echo $jsonnewArray;
+echo $jsonNewArray;

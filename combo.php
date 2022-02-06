@@ -1,18 +1,3 @@
-<?php
-//Получение json строки из файла sendarray.php
-$ch = curl_init();
-
-curl_setopt($ch, CURLOPT_URL, 'http://test-work/sendarray.php');
-curl_setopt($ch, CURLOPT_POST, 1);
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-
-$res = curl_exec($ch);
-
-curl_close($ch);
-
-$decode = json_decode($res);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,11 +11,6 @@ $decode = json_decode($res);
 </head>
 
 <body>
-
-    <div class="root" style="display: none">
-        <?php echo $res ?>
-    </div>
-
     <div class="parent">
         <form action="">
             <select id="selectFirst">
