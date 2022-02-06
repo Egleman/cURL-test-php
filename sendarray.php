@@ -1,5 +1,4 @@
 <?php
-
 //Создаю двумерный массив из текстового файла
 $text = fopen("masive.txt", "r");
 $array = null;
