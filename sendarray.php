@@ -4,6 +4,7 @@ $text = fopen("masive.txt", "r");
 $array = null;
 $newArray = [];
 
+
 if ($text) {
     while (($buffer = fgets($text)) !== false) {
         $array[] = $buffer;

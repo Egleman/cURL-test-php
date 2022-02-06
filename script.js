@@ -9,6 +9,8 @@ const result = document.querySelector('.result');
 
 const form = document.querySelector('form');
 
+let arrSelectSecond = [];
+
 //Получение массива методом пост из файла sendArray.php
 fetch('sendArray.php', {
     method: 'POST'
@@ -17,33 +19,69 @@ fetch('sendArray.php', {
     return response.json()
 })
 .then((data) => {
-   //Добавление значений в селекты
-    data[0].forEach((item, index) => {
+   //Добавление значений в первый селект
+    let arrSelectFirst = [];
+
+    data.forEach(item => {
+        let shifted = item.shift();
+        arrSelectFirst.push(shifted);
+        arrSelectSecond.push(item);
+    })
+
+    arrSelectFirst.forEach((item, index) => {
         const option = document.createElement('option');
         option.value = index;
         option.textContent = item;
         selectFirst.appendChild(option);
-    })
-    data[1].forEach((item, index) => {
-        const option = document.createElement('option');
-        option.value = index;
-        option.textContent = item;
-        selectSecond.appendChild(option);
-    })
+    });
+
 });
 
-//Меняем второй селект и первый при выборе одного из двух
+//Меняем второй селект в зависимости от первого
 selectFirst.addEventListener('change', () => {
-    selectSecond.value = selectFirst.value;
+    console.log(selectFirst.value);
+
+    if(selectFirst.value == 'sel') {
+        selectSecond.textContent = '';
+        const opt = document.createElement('option');
+        opt.value = 'sel';
+        opt.textContent = 'Выберите значение';
+        selectSecond.append(opt);
+    } else if (selectFirst.value == 0) {
+        selectSecond.textContent = '';
+        arrSelectSecond[0].forEach((item, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = item;
+            selectSecond.appendChild(option);
+        });
+    } else if (selectFirst.value == 1) {
+        selectSecond.textContent = '';
+        arrSelectSecond[1].forEach((item, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = item;
+            selectSecond.appendChild(option);
+        });
+    } else if (selectFirst.value == 2) {
+        selectSecond.textContent = '';
+        arrSelectSecond[2].forEach((item, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = item;
+            selectSecond.appendChild(option);
+        });
+    }
+
     inp1.value = selectFirst.options[selectFirst.selectedIndex].textContent;
     inp2.value = selectSecond.options[selectSecond.selectedIndex].textContent;
 });
+
 
 selectSecond.addEventListener('change', () => {
-    selectFirst.value = selectSecond.value;
-    inp1.value = selectFirst.options[selectFirst.selectedIndex].textContent;
     inp2.value = selectSecond.options[selectSecond.selectedIndex].textContent;
 });
+
 
 //Отправка данных в файл arrive.php без перезагрузки
 form.addEventListener('submit', (e) => {
@@ -58,6 +96,4 @@ form.addEventListener('submit', (e) => {
 
     .then((response) => response.text())
     .then((request) => console.log(request))
-
-    result.innerHTML = `Значение 1: ${inp1.value}<br>Значение 2: ${inp2.value}`;
 });
